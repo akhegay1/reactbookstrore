@@ -189,7 +189,7 @@ class BooksForm extends Component {
     console.log('bef axios');
     axios
 			.get(
-				"http://localhost:3010/books"
+				"https://gobookstoretest.herokuapp.com//books"
 			)
 			.then((response) => {
         this.props.loadBooks(response.data)

@@ -123,7 +123,7 @@ class EditBookForm extends Component {
   addBook1(data) {
     console.log("addBook1")
 
-    axios.post('http://localhost:3010/books/create', 
+    axios.post('https://gobookstoretest.herokuapp.com/books/create', 
          data
       ).catch(error => {
         console.log(error.message);
@@ -140,7 +140,7 @@ class EditBookForm extends Component {
     
     console.log(this.props.selectedbook.id)
 
-    axios.post('http://localhost:3010/books/update', 
+    axios.post('https://gobookstoretest.herokuapp.com/books/update', 
          data
       ).catch(error => {
         console.log(error.message);
@@ -186,7 +186,7 @@ class EditBookForm extends Component {
 
     axios
     .get(
-      "http://localhost:3010/books"
+      "https://gobookstoretest.herokuapp.com/books"
     )
     .then((response) => {
       this.props.loadBooks(response.data)
