@@ -185,11 +185,11 @@ class BooksForm extends Component {
   
 
   loadFromSrv = event => {
-    //const proxyurl = "http://cors.io/?";
+    const proxyurl = "http://cors.io/?";
     console.log('bef axios');
     axios
 			.get(
-				"https://gobookstoretest.herokuapp.com/books"
+				proxyurl+"https://gobookstoretest.herokuapp.com/books"
 			)
 			.then((response) => {
         this.props.loadBooks(response.data)
