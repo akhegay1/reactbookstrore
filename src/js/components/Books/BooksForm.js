@@ -192,6 +192,7 @@ class BooksForm extends Component {
 				proxyurl+"https://gobookstoretest.herokuapp.com/books"
 			)
 			.then((response) => {
+        console.log('aft resp axios');
         this.props.loadBooks(response.data)
         console.log('aft loadBooks');
 			})
