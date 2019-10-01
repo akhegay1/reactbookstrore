@@ -169,7 +169,7 @@ class BooksForm extends Component {
 
     console.log(this.props.selectedbook.id)
 
-    axios.post('http://localhost:3010/books/delete', 
+    axios.post('https://gobookstoretest.herokuapp.com/books/delete', 
          this.props.selectedbook.id
       ).catch(error => {
         console.log(error.message);
@@ -189,7 +189,7 @@ class BooksForm extends Component {
     console.log('bef axios');
     axios
 			.get(
-				"https://gobookstoretest.herokuapp.com//books"
+				"https://gobookstoretest.herokuapp.com/books"
 			)
 			.then((response) => {
         this.props.loadBooks(response.data)
