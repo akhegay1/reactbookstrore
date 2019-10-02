@@ -281,11 +281,11 @@ class ColorsForm extends Component {
             </Grid>
 
             
-              <Button type="submit" variant="raised" color="primary">
+              <Button type="submit" variant="raised"  className={this.props.classes.button}>
                 Save
             </Button>
 
-              <Button type="button" variant="raised" color="secondary" onClick={event => this.clearColor()}>
+              <Button type="button" variant="raised" className={this.props.classes.button} onClick={event => this.clearColor()}>
                 Clear
             </Button>
 
