@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import TextField from "@material-ui/core/TextField";
-import stylesT  from './weather.css';
+import stylesT  from './weather.module.css';
 
 //import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 //import theme from '../../../theme';
@@ -17,7 +17,6 @@ const API_KEY = "c7d4a970d806d4ed52f085f60d0cfae2"
 
 
 const styles = theme => ({
-
   button: {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     borderRadius: "30px",
@@ -111,37 +110,44 @@ class Weather extends Component {
 
     if (this.props.weather.sys) {
 
-      return (
-        <div className={stylesT.wrapper}>
-          <InputLabel htmlFor="country">country</InputLabel>
+      return (        
+        <div className={stylesT.weather__rslt}>
+          <div className={stylesT.weather__rslt_child}>
+          <InputLabel className={stylesT.weather__elem} htmlFor="country">country</InputLabel>
           <TextField
             id="country"
             value={this.props.weather.sys.country}
-            className={this.props.classes.textfield}
-          /><br />
+            className={stylesT.weather__elem}
+          />
+          </div>
 
-          <InputLabel htmlFor="pressure">pressure</InputLabel>
+          <div  className={stylesT.weather__rslt_child}>
+          <InputLabel className={stylesT.weather__elem} htmlFor="pressure">pressure</InputLabel>
           <TextField
             id="pressure"
             value={this.props.weather.main.pressure}
-            className={this.props.classes.textfield}
-          /><br />
+            className={stylesT.weather__elem}
+          />
+          </div>
 
-
-          <InputLabel htmlFor="temp">temp</InputLabel>
+          <div className={stylesT.weather__rslt_child}>
+          <InputLabel className={stylesT.weather__elem} htmlFor="temp">temp</InputLabel>
           <TextField
             id="temp"
             value={this.props.weather.main.temp}
-            className={this.props.classes.textfield}
-          /><br />
+            className={stylesT.weather__elem}
+          />
+          </div>
 
-
-          <InputLabel htmlFor="sunset">sunset</InputLabel>
+          <div className={stylesT.weather__rslt_child}>
+          <InputLabel className={stylesT.weather__elem} htmlFor="sunset">sunset</InputLabel>
           <TextField
             id="sunset"
             value={this.timestamp2str(this.props.weather.sys.sunset)}
-            className={this.props.classes.textfield}
+            className={stylesT.weather__elem}
           />
+          </div>
+
         </div>
       );
 
@@ -158,23 +164,21 @@ class Weather extends Component {
 
     return (
 
-      <div>
+      
         <div id='frm'>
           <form onSubmit={this.gettingWeather}>
-            <input type="text" name="city" placeholder="Город" />
-            <br />
-            <button>Получить погоду</button>
-            <br />
-
+            <div className={stylesT.wrapper}>
+              <div className={stylesT.weather__inp}>
+                <input type="text" name="city" placeholder="Город" />            
+                <button>Получить погоду</button>
+              </div>
+            </div>
+            
             {this.renderAnswer()}
           </form>
 
 
         </div>
-
-
-
-      </div>
 
 
     )
