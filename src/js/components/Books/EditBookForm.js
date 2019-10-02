@@ -273,7 +273,7 @@ class EditBookForm extends Component {
                 <Grid key={"dt_publishede"} xs={12} sm={6} item>
                 <TextField
                   label=""
-                  type="datetime-local"
+                  type="date"
                   id="dt_publishedId"
                   onChange={this.handleChange("dt_published")}
                   value={this.props.selectedbook.dt_published}
