@@ -16,12 +16,20 @@ const logger = store => next => action => {
     return result
 }
 
+const saver = store => next => action => {
+    let result = next(action)
+    //window.localStorage.clear()
+    //при след запуске, данные загружаются их localstorage, а не с бд
+    localStorage['redux-store'] = JSON.stringify(store.getState())
+    return result
+}
+
 
 //console.log(stateData)
 
 
 const storeFactory = (initialState=stateData) =>
-    applyMiddleware(logger)(createStore)(
+    applyMiddleware(logger, saver)(createStore)(
         combineReducers({colors, sort, selected, colortypes, books, selectedbook, curForm, isIns, weather}),
         (localStorage['redux-store']) ?
             JSON.parse(localStorage['redux-store']) :
