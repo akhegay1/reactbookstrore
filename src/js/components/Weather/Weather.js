@@ -5,12 +5,9 @@ import { loadWeather } from "../../../store/actions/actions";
 
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-
-
-
 import InputLabel from '@material-ui/core/InputLabel';
 import TextField from "@material-ui/core/TextField";
-
+import stylesT  from './weather.css';
 
 //import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 //import theme from '../../../theme';
@@ -36,7 +33,8 @@ const styles = theme => ({
 
 
 const mapStateToProps = state => {
-  return { weather: state.weather, 
+  return {
+    weather: state.weather,
     curForm: state.curForm,
     isIns: state.isIns
   };
@@ -45,7 +43,7 @@ const mapStateToProps = state => {
 //1-я ф-ция это тут на форме, а вторая в distpath - это action
 const mapDispatchToProps = dispatch => {
   return {
-    loadWeather: (jsonWeather) => dispatch(loadWeather(jsonWeather))    
+    loadWeather: (jsonWeather) => dispatch(loadWeather(jsonWeather))
   };
 };
 
@@ -64,37 +62,37 @@ class Weather extends Component {
     this.gettingWeather = this.gettingWeather.bind(this);
   }
 
-  
+
 
   timestamp2str = str => {
     let ts = str
-    let date = new Date(ts*1000)
+    let date = new Date(ts * 1000)
     console.log(date)
-    
+
     let rslt_time = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
     console.log(rslt_time)
 
-    return  rslt_time
-  } 
-  
+    return rslt_time
+  }
+
 
   gettingWeather = event => {
     event.preventDefault();
     //const proxyurl = "http://cors.io/?"
-    
+
     const city = event.target.elements.city.value
     console.log(city)
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
-    
-    
-    
+
+
+
     fetch(url)
       .then(res => res.json())
       .then(
-        (result) => {          
+        (result) => {
           this.props.loadWeather(result)
           console.log('result')
-          console.log(result) 
+          console.log(result)
           //console.log(this.props.books) 
         },
         // Note: it's important to handle errors here
@@ -106,7 +104,7 @@ class Weather extends Component {
           });
         }
       )
-    
+
   }
 
   renderAnswer() {
@@ -114,39 +112,39 @@ class Weather extends Component {
     if (this.props.weather.sys) {
 
       return (
-        <div>
-      <InputLabel htmlFor="country">country</InputLabel>
-      <TextField
-        id="country"
-        value={this.props.weather.sys.country}
-        className={this.props.classes.textfield}              
-      /><br/>
+        <div className={stylesT.wrapper}>
+          <InputLabel htmlFor="country">country</InputLabel>
+          <TextField
+            id="country"
+            value={this.props.weather.sys.country}
+            className={this.props.classes.textfield}
+          /><br />
 
-      <InputLabel htmlFor="pressure">pressure</InputLabel>
-      <TextField
-        id="pressure"
-        value={this.props.weather.main.pressure}
-        className={this.props.classes.textfield}              
-      /><br/>
+          <InputLabel htmlFor="pressure">pressure</InputLabel>
+          <TextField
+            id="pressure"
+            value={this.props.weather.main.pressure}
+            className={this.props.classes.textfield}
+          /><br />
 
-      
-      <InputLabel htmlFor="temp">temp</InputLabel>
-      <TextField
-        id="temp"
-        value={this.props.weather.main.temp}
-        className={this.props.classes.textfield}              
-      /><br/>
 
-      
-      <InputLabel htmlFor="sunset">sunset</InputLabel>
-      <TextField
-        id="sunset"
-        value={this.timestamp2str(this.props.weather.sys.sunset)}
-        className={this.props.classes.textfield}              
-      />
-      </div>
+          <InputLabel htmlFor="temp">temp</InputLabel>
+          <TextField
+            id="temp"
+            value={this.props.weather.main.temp}
+            className={this.props.classes.textfield}
+          /><br />
+
+
+          <InputLabel htmlFor="sunset">sunset</InputLabel>
+          <TextField
+            id="sunset"
+            value={this.timestamp2str(this.props.weather.sys.sunset)}
+            className={this.props.classes.textfield}
+          />
+        </div>
       );
-      
+
     }
   }
 
@@ -154,19 +152,19 @@ class Weather extends Component {
 
   render() {
 
-    
+
     //const { classes } = this.props;
     //const { spacing } = this.state;
 
     return (
-      
+
       <div>
         <div id='frm'>
-          <form onSubmit={this.gettingWeather}>          
-            <input type="text" name="city" placeholder="Город"/>
-            <br/>
+          <form onSubmit={this.gettingWeather}>
+            <input type="text" name="city" placeholder="Город" />
+            <br />
             <button>Получить погоду</button>
-            <br/>
+            <br />
 
             {this.renderAnswer()}
           </form>
@@ -178,7 +176,7 @@ class Weather extends Component {
 
       </div>
 
-      
+
     )
   }
 
