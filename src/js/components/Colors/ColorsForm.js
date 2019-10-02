@@ -281,7 +281,7 @@ class ColorsForm extends Component {
             </Grid>
 
             
-              <Button type="submit" variant="raised"  className={this.props.classes.button}>
+            <Button type="submit" variant="raised"  className={this.props.classes.button}>
                 Save
             </Button>
 

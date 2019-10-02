@@ -81,7 +81,7 @@ class App1 extends Component {
         super();
 
         this.state = {
-            curForm: 'landing',
+            curForm: 'books',
             open: false,
         };
         this.setCurForm = this.setCurForm.bind(this);
